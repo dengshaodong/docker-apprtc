@@ -6,6 +6,12 @@ if [ -f run.sh ]
 then
 rm run.sh
 fi
+cat >run.sh >>EOF
+#!/bin/bash
+socat TCP-LISTN:9080 TCP:8081 &
+python /appengine/google_appengine/dev_appserver.py ./out/app_engine --skip_sdk_update_check
+
+EOF
 
 echo "FROM dockerfile/nodejs" >>Dockerfile
 echo "RUN apt-get update">>Dockerfile
@@ -29,7 +35,8 @@ echo "RUN unzip /appengine.zip -d /appengine">>Dockerfile
 #echo "RUN python setup.py install">>Dockerfile
 echo "EXPOSE 8000" >>Dockerfile
 #echo "WORKDIR /$JOB_NAME/examples" >>Dockerfile
-echo "CMD [\"python\",\"/appengine/google_appengine/dev_appserver.py\",\"./out/app_engine\",\"--skip_sdk_update_check\"]" >>Dockerfile
+#echo "CMD [\"python\",\"/appengine/google_appengine/dev_appserver.py\",\"./out/app_engine\",\"--skip_sdk_update_check\"]" >>Dockerfile
+echo "CMD [\"sh\",\"run.sh\"]">>Dockerfile
 JOB_NAME=$(echo $JOB_NAME | tr '[A-Z]' '[a-z]') 
 docker build -t aadebuger/$JOB_NAME .
 docker rm -f $JOB_NAME || echo "hello"
