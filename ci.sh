@@ -8,7 +8,7 @@ rm run.sh
 fi
 cat >run.sh >>EOF
 #!/bin/bash
-socat TCP-LISTN:9080 TCP:8081 &
+socat TCP-LISTEN:9080 TCP:8081 &
 python /appengine/google_appengine/dev_appserver.py ./out/app_engine --skip_sdk_update_check
 
 EOF
