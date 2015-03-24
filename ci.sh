@@ -2,13 +2,17 @@ if [ -f Dockerfile ]
 then
 rm Dockerfile
 fi
-
+if [ -f run.sh ]
+then
+rm run.sh
+fi
 
 echo "FROM dockerfile/nodejs" >>Dockerfile
-#echo "RUN apt-get update">>Dockerfile
+echo "RUN apt-get update">>Dockerfile
 
-#echo "RUN apt-get -y install libpq-dev">>Dockerfile
+echo "RUN apt-get -y install socat">>Dockerfile
 
+#echo "socat TCP-LISTN:9080 TCP:8081"
 #echo "RUN apt-get -y install python-pip" >>Dockerfile
 export
 echo "copy . /$JOB_NAME" >>Dockerfile
