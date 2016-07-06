@@ -8,4 +8,4 @@ install:
 
 
 script:
-  - grunt travis
+  - grunt travis --force
