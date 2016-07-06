@@ -10,7 +10,7 @@ def InstallWebTestOnLinux(webtest_dir):
   try:
     print 'About to install webtest into your system python.'
     os.chdir(webtest_dir)
-    result = os.system('sudo python setup.py install')
+    result = os.system('python setup.py install')
     if result == 0:
       print 'Install successful.'
     else:
