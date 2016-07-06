@@ -28,6 +28,7 @@ echo "RUN npm install -g grunt-cli" >>Dockerfile
 echo "RUN npm install" >>Dockerfile
 #echo "RUN npm install node-static" >>Dockerfile
 
+
 echo "RUN grunt build " >>Dockerfile
 echo "RUN wget -O /appengine.zip https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.18.zip" >>Dockerfile
 echo "RUN unzip /appengine.zip -d /appengine">>Dockerfile
