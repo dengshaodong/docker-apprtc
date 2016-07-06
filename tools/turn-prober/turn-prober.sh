@@ -52,6 +52,7 @@ eval $XVFB google-chrome \
   $WEBPAGE > $CHROME_LOG_FILE 2>&1 &
 CHROME_PID=$!
 
+
 while ! grep -q DONE $CHROME_LOG_FILE && pids_of c[h]rome|grep -q .; do
   sleep 0.1
 done
